@@ -11,10 +11,10 @@ namespace e___Shift_System.Models
         public int JobID { get; set; }
         public int CustomerID { get; set; }
         public string StartLocation { get; set; }
-        public string Destination { get; set; } = string.Empty; // Default value added
+        public string Destination { get; set; }
         public DateTime JobDate { get; set; }
-        public string Status { get; set; } = string.Empty; // Default value added
-
+        public string Status { get; set; }
         public string ShiftingItems { get; set; }
+
     }
 }

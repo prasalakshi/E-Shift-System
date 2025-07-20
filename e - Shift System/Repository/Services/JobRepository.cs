@@ -31,12 +31,34 @@ namespace e___Shift_System.Repository.Services
             }
         }
 
-        public void CancelJob(int job)
-        {
-            using SqlConnection conn = new SqlConnection (connectionString);
-            {
+        
 
+        public List<Job> GetAllJobs()
+        {
+            var jobs = new List<Job>();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM Jobs";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                conn.Open();
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        jobs.Add(new Job
+                        {
+                            JobID = Convert.ToInt32(reader["JobID"]),
+                            CustomerID = Convert.ToInt32(reader["CustomerID"]),
+                            StartLocation = reader["StartLocation"].ToString(),
+                            Destination = reader["Destination"].ToString(),
+                            JobDate = Convert.ToDateTime(reader["JobDate"]),
+                            Status = reader["Status"].ToString(),
+                            ShiftingItems = reader["ShiftingItems"].ToString()
+                        });
+                    }
+                }
             }
+            return jobs;
         }
 
         public Job GetJobById(int jobId)
@@ -94,6 +116,47 @@ namespace e___Shift_System.Repository.Services
                 }
             }
             return jobs;
+        }
+
+        public List<Job> GetJobsByDate(DateTime jobDate)
+        {
+            var jobs = new List<Job>();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM Jobs WHERE CAST(JobDate AS DATE) = @JobDate";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@JobDate", jobDate.Date);
+                conn.Open();
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        jobs.Add(new Job
+                        {
+                            JobID = (int)reader["JobID"],
+                            CustomerID = (int)reader["CustomerID"],
+                            StartLocation = reader["StartLocation"].ToString(),
+                            Destination = reader["Destination"].ToString(),
+                            JobDate = (DateTime)reader["JobDate"],
+                            Status = reader["Status"].ToString(),
+                            ShiftingItems = reader["ShiftingItems"].ToString()
+                        });
+                    }
+                }
+            }
+            return jobs;
+        }
+
+        public void SoftDeleteJob(int jobId)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "UPDATE Jobs SET Status='Cancelled' WHERE JobID=@JobID";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@JobID", jobId);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public void UpdateJob(Job job)

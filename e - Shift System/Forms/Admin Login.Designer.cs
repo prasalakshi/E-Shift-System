@@ -39,7 +39,6 @@
             pictureBox1 = new PictureBox();
             btnBack = new Button();
             linkLableExit = new LinkLabel();
-            linkLabel1 = new LinkLabel();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -162,24 +161,12 @@
             linkLableExit.Text = "Exit";
             linkLableExit.LinkClicked += linkLableExit_LinkClicked;
             // 
-            // linkLabel1
-            // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(642, 587);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(129, 22);
-            linkLabel1.TabIndex = 28;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "Register Admin";
-            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
-            // 
             // Admin_Login
             // 
             AutoScaleDimensions = new SizeF(10F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1422, 853);
             ControlBox = false;
-            Controls.Add(linkLabel1);
             Controls.Add(linkLableExit);
             Controls.Add(btnBack);
             Controls.Add(pictureBox1);
@@ -215,6 +202,5 @@
         private PictureBox pictureBox1;
         private Button btnBack;
         private LinkLabel linkLableExit;
-        private LinkLabel linkLabel1;
     }
 }

@@ -67,9 +67,6 @@ namespace e___Shift_System.Forms
             
         private void btnMyLoads_Click(object sender, EventArgs e)
         {
-            Form My_Loads = new My_Loads();
-            My_Loads.Show();
-            this.Hide();
         }
 
         private void btnProfile_Click(object sender, EventArgs e)
@@ -81,9 +78,7 @@ namespace e___Shift_System.Forms
 
         private void btnTransportInfo_Click(object sender, EventArgs e)
         {
-            Form Transport_Info = new Transport_Info();
-            Transport_Info.Show();
-            this.Hide();
+            
         }
 
         private void linkLabelLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

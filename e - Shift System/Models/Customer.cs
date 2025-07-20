@@ -15,6 +15,6 @@ namespace e___Shift_System.Models
         public string Email { get; set; } = string.Empty; // Default value added
         public string ContactNumber { get; set; } = string.Empty; // Default value added
         public DateTime RegistrationDate { get; set; }
-        public object Status { get; set; }
+        public string Status { get; set; } = string.Empty; // Default value added
     }
 }

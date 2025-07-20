@@ -140,7 +140,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Tahoma", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(571, 89);
+            label1.Location = new Point(570, 89);
             label1.Margin = new Padding(6, 0, 6, 0);
             label1.Name = "label1";
             label1.Size = new Size(284, 28);
@@ -156,7 +156,7 @@
             dataGridViewCustomerManagement.RowHeadersWidth = 51;
             dataGridViewCustomerManagement.Size = new Size(863, 615);
             dataGridViewCustomerManagement.TabIndex = 82;
-            dataGridViewCustomerManagement.CellClick += dataGridViewCustomerManagement_CellClick;
+            dataGridViewCustomerManagement.CellClick += dataGridViewCustomerManagement_CellContentClick;
             dataGridViewCustomerManagement.CellContentClick += dataGridViewCustomerManagement_CellContentClick;
             // 
             // pictureBox1
@@ -203,6 +203,7 @@
             btnBack.TabIndex = 98;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = false;
+            btnBack.Click += btnBack_Click;
             // 
             // btnEdit
             // 
@@ -214,6 +215,7 @@
             btnEdit.TabIndex = 97;
             btnEdit.Text = "Edit";
             btnEdit.UseVisualStyleBackColor = false;
+            btnEdit.Click += btnEdit_Click;
             // 
             // linkLabelRegistercustomer
             // 
@@ -224,6 +226,7 @@
             linkLabelRegistercustomer.TabIndex = 100;
             linkLabelRegistercustomer.TabStop = true;
             linkLabelRegistercustomer.Text = "Register Customer";
+            linkLabelRegistercustomer.LinkClicked += linkLabelRegistercustomer_LinkClicked;
             // 
             // Customer_Management
             // 

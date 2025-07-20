@@ -19,51 +19,37 @@ namespace e___Shift_System.Forms
 
         private void menuStripUserManage_Click(object sender, EventArgs e)
         {
-            Form User_Management = new User_Management();
-            User_Management.Show();
-            this.Hide();
+
         }
 
         private void menuStripCusManage_Click(object sender, EventArgs e)
         {
-            Form Customer_Management = new Customer_Management();
-            Customer_Management.Show();
-            this.Hide();
+
         }
 
         private void menuStripJobManage_Click(object sender, EventArgs e)
         {
-            Form Job_Management = new Job_Management();
-            Job_Management.Show();
-            this.Hide();
+
         }
 
         private void menuStripLoadManage_Click(object sender, EventArgs e)
         {
-            Form Load_Management = new Load_Management();
-            Load_Management.Show();
-            this.Hide();
+
         }
 
         private void menuStripTransportManage_Click(object sender, EventArgs e)
         {
-            Form Transport_Unit_Management = new Transport_Unit_Management();
-            Transport_Unit_Management.Show();
-            this.Hide();
+
         }
 
         private void menuStripReport_Click(object sender, EventArgs e)
         {
-            Form Reports = new Reports();
-            Reports.Show();
-            this.Hide();
+
         }
 
         private void menuStripSetting_Click(object sender, EventArgs e)
         {
-            Form Setting = new Setting();
-            Setting.Show();
-            this.Hide();
+
         }
 
         private void databaseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -73,20 +59,12 @@ namespace e___Shift_System.Forms
 
         private void menuStripLogoutA_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Are you sure you want to logout?", "Logout Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                Form Customer_Login = new Customer_Login();
-                Customer_Login.Show();
-                this.Hide();
-            }
+
         }
 
         private void btnMyJobs_Click(object sender, EventArgs e)
         {
-            Form userManagement = new User_Management();
-            userManagement.Show();
-            this.Hide();
+
         }
 
         private void linkLabelLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -94,16 +72,56 @@ namespace e___Shift_System.Forms
             DialogResult result = MessageBox.Show("Are you sure you want to logout?", "Logout Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                Form Customer_Login = new Customer_Login();
-                Customer_Login.Show();
+                Form Login = new Login();
+                Login.Show();
                 this.Hide();
             }
         }
 
         private void btnMyLoads_Click(object sender, EventArgs e)
         {
-            Form customerManegement = new Customer_Management();
-            customerManegement.Show();
+
+        }
+
+        private void btnProfile_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnJobManagement_Click(object sender, EventArgs e)
+        {
+            Form jobManagement = new Job_Management();
+            jobManagement.Show();
+            this.Hide();
+        }
+
+        private void btnAddLorries_Click(object sender, EventArgs e)
+        {
+            Form AddLorry = new Add_Lorries();
+            AddLorry.Show();
+            this.Hide();
+        }
+
+        private void btnAddDrivers_Click(object sender, EventArgs e)
+        {
+            Form AddDrivers = new Add_Drivers();
+            AddDrivers.Show();
+            this.Hide();
+
+
+        }
+
+        private void btnAddAssistants_Click(object sender, EventArgs e)
+        {
+            Form AddAssistants = new Add_Assistants();
+            AddAssistants.Show();
+            this.Hide();
+        }
+
+        private void btnAddContainers_Click(object sender, EventArgs e)
+        {
+            Form AddContainers = new Add_containers();
+            AddContainers.Show();
             this.Hide();
         }
     }

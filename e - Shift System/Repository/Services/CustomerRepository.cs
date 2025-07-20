@@ -19,7 +19,7 @@ namespace e___Shift_System.Repository.Services
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    string query = "SELECT Status, Username FROM Customers WHERE Username = @username AND PasswordHash = @passwordHash;";
+                    string query = "SELECT CustomerID, Username, Status FROM Customers WHERE Username = @username AND PasswordHash = @passwordHash;";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@passwordHash", passwordHash);
@@ -32,7 +32,8 @@ namespace e___Shift_System.Repository.Services
                             return new Customer
                             {
                                 CustomerID = Convert.ToInt32(reader["CustomerID"]),
-                                Username = reader["Username"].ToString()
+                                Username = reader["Username"].ToString(),
+                                Status = reader["Status"].ToString()
                             };
                         }
                     }
@@ -159,7 +160,7 @@ namespace e___Shift_System.Repository.Services
             var customers = new List<Customer>();
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "SELECT * FROM Customers";
+                string query = "SELECT * FROM Customers"; 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 conn.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -174,7 +175,8 @@ namespace e___Shift_System.Repository.Services
                             Username = reader["Username"].ToString(),
                             PasswordHash = reader["PasswordHash"].ToString(),
                             ContactNumber = reader["ContactNumber"].ToString(),
-                            RegistrationDate = Convert.ToDateTime(reader["RegistrationDate"])
+                            RegistrationDate = Convert.ToDateTime(reader["RegistrationDate"]),
+                            Status = reader["Status"].ToString() // 
                         });
                     }
                 }
@@ -186,8 +188,13 @@ namespace e___Shift_System.Repository.Services
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                // Soft delete by setting Status to 'Inactive', and also clear/scramble username and password.
-                string query = "UPDATE Customer SET Status='Inactive', Username=CONCAT('deleted_', CustomerID, '_', Username), PasswordHash=NEWID() WHERE CustomerID=@CustomerID";
+                string query = @"
+        UPDATE Customers
+        SET Status='Inactive',
+            Username=CONCAT('deleted_', CustomerID, '_', Username),
+            PasswordHash=NEWID()
+        WHERE CustomerID=@CustomerID";
+
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@CustomerID", customerId);
                 conn.Open();
@@ -199,7 +206,7 @@ namespace e___Shift_System.Repository.Services
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "UPDATE Customer SET Email=@Email, ContactNumber=@ContactNumber WHERE CustomerID=@CustomerID";
+                string query = "UPDATE Customers SET Email=@Email, ContactNumber=@ContactNumber WHERE CustomerID=@CustomerID";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Email", email);
                 cmd.Parameters.AddWithValue("@ContactNumber", contactnumber);

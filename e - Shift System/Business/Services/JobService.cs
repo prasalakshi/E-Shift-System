@@ -70,6 +70,16 @@ namespace e___Shift_System.Business.Services
             }
         }
 
+        public void EditJob(Job job, out string errorMessage)
+        {
+            bool success = UpdateJob(job, out errorMessage);
+        }
+
+        public List<Job> GetAllJobs()
+        {
+            return _repo.GetAllJobs();
+        }
+
         public Job GetJobById(int jobId)
         {
             return _repo.GetJobById(jobId);
@@ -78,6 +88,16 @@ namespace e___Shift_System.Business.Services
         public List<Job> GetJobsByCustomerId(int customerId)
         {
             return _repo.GetJobsByCustomerId(customerId);
+        }
+
+        public List<Job> GetJobsByDate(DateTime jobDate)
+        {
+            return _repo.GetJobsByDate(jobDate);
+        }
+
+        public void RegisterJob(Job job, out string errorMessage)
+        {
+            bool success = AddJob(job, out errorMessage);
         }
 
         public bool UpdateJob(Job job, out string errorMessage)

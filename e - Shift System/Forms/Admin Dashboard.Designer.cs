@@ -31,14 +31,16 @@
             pictureBox2 = new PictureBox();
             linkLabelLogout = new LinkLabel();
             label1 = new Label();
-            btnProfile = new Button();
-            btnTransportInfo = new Button();
-            btnMyLoads = new Button();
-            btnMyJobs = new Button();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
+            btnLoadManagement = new Button();
+            btnCustomerManagement = new Button();
+            btnUserManagement = new Button();
+            btnAddLorries = new Button();
+            btnAddDrivers = new Button();
+            btnReports = new Button();
+            btnTransportUnitManagement = new Button();
+            btnJobManagement = new Button();
+            btnAddAssistants = new Button();
+            btnAddContainers = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
@@ -69,109 +71,139 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Tahoma", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(578, 130);
+            label1.Location = new Point(597, 76);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(265, 34);
             label1.TabIndex = 36;
             label1.Text = "Admin Dashboard";
             // 
-            // btnProfile
+            // btnLoadManagement
             // 
-            btnProfile.BackColor = SystemColors.ActiveCaption;
-            btnProfile.Font = new Font("Tahoma", 12F);
-            btnProfile.Location = new Point(210, 372);
-            btnProfile.Margin = new Padding(4, 3, 4, 3);
-            btnProfile.Name = "btnProfile";
-            btnProfile.Size = new Size(391, 100);
-            btnProfile.TabIndex = 35;
-            btnProfile.Text = "Job Management";
-            btnProfile.UseVisualStyleBackColor = false;
+            btnLoadManagement.BackColor = SystemColors.ActiveCaption;
+            btnLoadManagement.Font = new Font("Tahoma", 12F);
+            btnLoadManagement.Location = new Point(759, 283);
+            btnLoadManagement.Margin = new Padding(4, 3, 4, 3);
+            btnLoadManagement.Name = "btnLoadManagement";
+            btnLoadManagement.Size = new Size(391, 101);
+            btnLoadManagement.TabIndex = 34;
+            btnLoadManagement.Text = "Load Management";
+            btnLoadManagement.UseVisualStyleBackColor = false;
             // 
-            // btnTransportInfo
+            // btnCustomerManagement
             // 
-            btnTransportInfo.BackColor = SystemColors.ActiveCaption;
-            btnTransportInfo.Font = new Font("Tahoma", 12F);
-            btnTransportInfo.Location = new Point(813, 372);
-            btnTransportInfo.Margin = new Padding(4, 3, 4, 3);
-            btnTransportInfo.Name = "btnTransportInfo";
-            btnTransportInfo.Size = new Size(391, 100);
-            btnTransportInfo.TabIndex = 34;
-            btnTransportInfo.Text = "Load Management";
-            btnTransportInfo.UseVisualStyleBackColor = false;
+            btnCustomerManagement.BackColor = SystemColors.ActiveCaption;
+            btnCustomerManagement.Font = new Font("Tahoma", 12F);
+            btnCustomerManagement.Location = new Point(759, 162);
+            btnCustomerManagement.Margin = new Padding(4, 3, 4, 3);
+            btnCustomerManagement.Name = "btnCustomerManagement";
+            btnCustomerManagement.Size = new Size(391, 101);
+            btnCustomerManagement.TabIndex = 33;
+            btnCustomerManagement.Text = "Customer Management";
+            btnCustomerManagement.UseVisualStyleBackColor = false;
+            btnCustomerManagement.Click += btnMyLoads_Click;
             // 
-            // btnMyLoads
+            // btnUserManagement
             // 
-            btnMyLoads.BackColor = SystemColors.ActiveCaption;
-            btnMyLoads.Font = new Font("Tahoma", 12F);
-            btnMyLoads.Location = new Point(813, 223);
-            btnMyLoads.Margin = new Padding(4, 3, 4, 3);
-            btnMyLoads.Name = "btnMyLoads";
-            btnMyLoads.Size = new Size(391, 100);
-            btnMyLoads.TabIndex = 33;
-            btnMyLoads.Text = "Customer Management";
-            btnMyLoads.UseVisualStyleBackColor = false;
-            btnMyLoads.Click += btnMyLoads_Click;
+            btnUserManagement.BackColor = SystemColors.ActiveCaption;
+            btnUserManagement.Font = new Font("Tahoma", 12F);
+            btnUserManagement.Location = new Point(316, 162);
+            btnUserManagement.Margin = new Padding(4, 3, 4, 3);
+            btnUserManagement.Name = "btnUserManagement";
+            btnUserManagement.Size = new Size(391, 101);
+            btnUserManagement.TabIndex = 32;
+            btnUserManagement.Text = "User Management";
+            btnUserManagement.UseVisualStyleBackColor = false;
+            btnUserManagement.Click += btnMyJobs_Click;
             // 
-            // btnMyJobs
+            // btnAddLorries
             // 
-            btnMyJobs.BackColor = SystemColors.ActiveCaption;
-            btnMyJobs.Font = new Font("Tahoma", 12F);
-            btnMyJobs.Location = new Point(210, 223);
-            btnMyJobs.Margin = new Padding(4, 3, 4, 3);
-            btnMyJobs.Name = "btnMyJobs";
-            btnMyJobs.Size = new Size(391, 100);
-            btnMyJobs.TabIndex = 32;
-            btnMyJobs.Text = "User Management";
-            btnMyJobs.UseVisualStyleBackColor = false;
-            btnMyJobs.Click += btnMyJobs_Click;
+            btnAddLorries.BackColor = SystemColors.ActiveCaption;
+            btnAddLorries.Font = new Font("Tahoma", 12F);
+            btnAddLorries.Location = new Point(316, 537);
+            btnAddLorries.Margin = new Padding(4, 3, 4, 3);
+            btnAddLorries.Name = "btnAddLorries";
+            btnAddLorries.Size = new Size(391, 101);
+            btnAddLorries.TabIndex = 41;
+            btnAddLorries.Text = "Add Lorries";
+            btnAddLorries.UseVisualStyleBackColor = false;
+            btnAddLorries.Click += btnAddLorries_Click;
             // 
-            // button1
+            // btnAddDrivers
             // 
-            button1.BackColor = SystemColors.ActiveCaption;
-            button1.Font = new Font("Tahoma", 12F);
-            button1.Location = new Point(210, 686);
-            button1.Margin = new Padding(4, 3, 4, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(391, 100);
-            button1.TabIndex = 41;
-            button1.Text = "Audit Logs";
-            button1.UseVisualStyleBackColor = false;
+            btnAddDrivers.BackColor = SystemColors.ActiveCaption;
+            btnAddDrivers.Font = new Font("Tahoma", 12F);
+            btnAddDrivers.Location = new Point(759, 537);
+            btnAddDrivers.Margin = new Padding(4, 3, 4, 3);
+            btnAddDrivers.Name = "btnAddDrivers";
+            btnAddDrivers.Size = new Size(391, 101);
+            btnAddDrivers.TabIndex = 40;
+            btnAddDrivers.Text = "Add Drivers";
+            btnAddDrivers.UseVisualStyleBackColor = false;
+            btnAddDrivers.Click += btnAddDrivers_Click;
             // 
-            // button2
+            // btnReports
             // 
-            button2.BackColor = SystemColors.ActiveCaption;
-            button2.Font = new Font("Tahoma", 12F);
-            button2.Location = new Point(813, 686);
-            button2.Margin = new Padding(4, 3, 4, 3);
-            button2.Name = "button2";
-            button2.Size = new Size(391, 100);
-            button2.TabIndex = 40;
-            button2.UseVisualStyleBackColor = false;
+            btnReports.BackColor = SystemColors.ActiveCaption;
+            btnReports.Font = new Font("Tahoma", 12F);
+            btnReports.Location = new Point(759, 412);
+            btnReports.Margin = new Padding(4, 3, 4, 3);
+            btnReports.Name = "btnReports";
+            btnReports.Size = new Size(391, 101);
+            btnReports.TabIndex = 39;
+            btnReports.Text = "Reports";
+            btnReports.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // btnTransportUnitManagement
             // 
-            button3.BackColor = SystemColors.ActiveCaption;
-            button3.Font = new Font("Tahoma", 12F);
-            button3.Location = new Point(813, 527);
-            button3.Margin = new Padding(4, 3, 4, 3);
-            button3.Name = "button3";
-            button3.Size = new Size(391, 100);
-            button3.TabIndex = 39;
-            button3.Text = "Reports";
-            button3.UseVisualStyleBackColor = false;
+            btnTransportUnitManagement.BackColor = SystemColors.ActiveCaption;
+            btnTransportUnitManagement.Font = new Font("Tahoma", 12F);
+            btnTransportUnitManagement.Location = new Point(316, 412);
+            btnTransportUnitManagement.Margin = new Padding(4, 3, 4, 3);
+            btnTransportUnitManagement.Name = "btnTransportUnitManagement";
+            btnTransportUnitManagement.Size = new Size(391, 101);
+            btnTransportUnitManagement.TabIndex = 38;
+            btnTransportUnitManagement.Text = "Transport Unit Management";
+            btnTransportUnitManagement.UseVisualStyleBackColor = false;
             // 
-            // button4
+            // btnJobManagement
             // 
-            button4.BackColor = SystemColors.ActiveCaption;
-            button4.Font = new Font("Tahoma", 12F);
-            button4.Location = new Point(210, 527);
-            button4.Margin = new Padding(4, 3, 4, 3);
-            button4.Name = "button4";
-            button4.Size = new Size(391, 100);
-            button4.TabIndex = 38;
-            button4.Text = "Transport Unit Management";
-            button4.UseVisualStyleBackColor = false;
+            btnJobManagement.BackColor = SystemColors.ActiveCaption;
+            btnJobManagement.Font = new Font("Tahoma", 12F);
+            btnJobManagement.Location = new Point(316, 293);
+            btnJobManagement.Margin = new Padding(4, 3, 4, 3);
+            btnJobManagement.Name = "btnJobManagement";
+            btnJobManagement.Size = new Size(391, 101);
+            btnJobManagement.TabIndex = 42;
+            btnJobManagement.Text = "Job Management";
+            btnJobManagement.UseVisualStyleBackColor = false;
+            btnJobManagement.Click += btnJobManagement_Click;
+            // 
+            // btnAddAssistants
+            // 
+            btnAddAssistants.BackColor = SystemColors.ActiveCaption;
+            btnAddAssistants.Font = new Font("Tahoma", 12F);
+            btnAddAssistants.Location = new Point(316, 667);
+            btnAddAssistants.Margin = new Padding(4, 3, 4, 3);
+            btnAddAssistants.Name = "btnAddAssistants";
+            btnAddAssistants.Size = new Size(391, 101);
+            btnAddAssistants.TabIndex = 43;
+            btnAddAssistants.Text = "Add Assistants";
+            btnAddAssistants.UseVisualStyleBackColor = false;
+            btnAddAssistants.Click += btnAddAssistants_Click;
+            // 
+            // btnAddContainers
+            // 
+            btnAddContainers.BackColor = SystemColors.ActiveCaption;
+            btnAddContainers.Font = new Font("Tahoma", 12F);
+            btnAddContainers.Location = new Point(759, 667);
+            btnAddContainers.Margin = new Padding(4, 3, 4, 3);
+            btnAddContainers.Name = "btnAddContainers";
+            btnAddContainers.Size = new Size(391, 101);
+            btnAddContainers.TabIndex = 44;
+            btnAddContainers.Text = "Add Containers";
+            btnAddContainers.UseVisualStyleBackColor = false;
+            btnAddContainers.Click += btnAddContainers_Click;
             // 
             // Admin_Dashboard
             // 
@@ -179,16 +211,18 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1422, 853);
             ControlBox = false;
-            Controls.Add(button1);
-            Controls.Add(button2);
-            Controls.Add(button3);
-            Controls.Add(button4);
+            Controls.Add(btnAddContainers);
+            Controls.Add(btnAddAssistants);
+            Controls.Add(btnJobManagement);
+            Controls.Add(btnAddLorries);
+            Controls.Add(btnAddDrivers);
+            Controls.Add(btnReports);
+            Controls.Add(btnTransportUnitManagement);
             Controls.Add(linkLabelLogout);
             Controls.Add(label1);
-            Controls.Add(btnProfile);
-            Controls.Add(btnTransportInfo);
-            Controls.Add(btnMyLoads);
-            Controls.Add(btnMyJobs);
+            Controls.Add(btnLoadManagement);
+            Controls.Add(btnCustomerManagement);
+            Controls.Add(btnUserManagement);
             Controls.Add(pictureBox2);
             Name = "Admin_Dashboard";
             StartPosition = FormStartPosition.CenterScreen;
@@ -203,13 +237,15 @@
         private PictureBox pictureBox2;
         private LinkLabel linkLabelLogout;
         private Label label1;
-        private Button btnProfile;
-        private Button btnTransportInfo;
-        private Button btnMyLoads;
-        private Button btnMyJobs;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
+        private Button btnLoadManagement;
+        private Button btnCustomerManagement;
+        private Button btnUserManagement;
+        private Button btnAddLorries;
+        private Button btnAddDrivers;
+        private Button btnReports;
+        private Button btnTransportUnitManagement;
+        private Button btnJobManagement;
+        private Button btnAddAssistants;
+        private Button btnAddContainers;
     }
 }

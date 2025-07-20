@@ -14,5 +14,10 @@ namespace e___Shift_System.Repository.Interface
         void UpdateJob(Job job);
         void UpdateJobStatus(int jobId, string status);
         Job GetJobById(int jobId);
+
+        List<Job> GetAllJobs();
+        void SoftDeleteJob(int jobId); // Mark as Cancelled
+        
+        List<Job> GetJobsByDate(DateTime jobDate);
     }
 }

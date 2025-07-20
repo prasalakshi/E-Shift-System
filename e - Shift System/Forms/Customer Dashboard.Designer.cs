@@ -67,7 +67,7 @@
             // 
             btnMyLoads.BackColor = SystemColors.ActiveCaption;
             btnMyLoads.Font = new Font("Tahoma", 12F);
-            btnMyLoads.Location = new Point(823, 297);
+            btnMyLoads.Location = new Point(220, 479);
             btnMyLoads.Margin = new Padding(4, 3, 4, 3);
             btnMyLoads.Name = "btnMyLoads";
             btnMyLoads.Size = new Size(391, 100);
@@ -93,7 +93,7 @@
             // 
             btnProfile.BackColor = SystemColors.ActiveCaption;
             btnProfile.Font = new Font("Tahoma", 12F);
-            btnProfile.Location = new Point(220, 479);
+            btnProfile.Location = new Point(823, 297);
             btnProfile.Margin = new Padding(4, 3, 4, 3);
             btnProfile.Name = "btnProfile";
             btnProfile.Size = new Size(391, 100);

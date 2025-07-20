@@ -14,5 +14,12 @@ namespace e___Shift_System.Business.Interface
         bool CancelJob(int jobId, out string errorMessage);
         List<Job> GetJobsByCustomerId(int customerId);
         Job GetJobById(int jobId);
+        List<Job> GetAllJobs();
+        void RegisterJob(Job job, out string errorMessage);
+        void EditJob(Job job, out string errorMessage);
+        List<Job> GetJobsByDate(DateTime jobDate);
+
+
+
     }
 }

@@ -104,9 +104,17 @@ namespace e___Shift_System.Business.Services
         public void DeleteCustomer(int CustomerId, out string errorMessage)
         {
             errorMessage = "";
-            var admin = _repo.GetCustomerById(CustomerId);
-            if (admin == null) { errorMessage = "Admin not found."; return; }
-            if (admin.Status == "Inactive") { errorMessage = "Admin already deleted."; return; }
+            var customer = _repo.GetCustomerById(CustomerId);
+            if (customer == null)
+            {
+                errorMessage = "Customer not found.";
+                return;
+            }
+            if (customer.Status == "Inactive")
+            {
+                errorMessage = "Customer already deleted.";
+                return;
+            }
             _repo.DeleteCustomer(CustomerId);
         }
 
