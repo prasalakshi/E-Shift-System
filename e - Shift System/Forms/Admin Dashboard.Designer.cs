@@ -89,6 +89,7 @@
             btnLoadManagement.TabIndex = 34;
             btnLoadManagement.Text = "Load Management";
             btnLoadManagement.UseVisualStyleBackColor = false;
+            btnLoadManagement.Click += btnLoadManagement_Click;
             // 
             // btnCustomerManagement
             // 

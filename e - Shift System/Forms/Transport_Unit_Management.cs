@@ -12,6 +12,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+
 
 namespace e___Shift_System.Forms
 {
@@ -35,11 +39,12 @@ namespace e___Shift_System.Forms
         {
             txtJobID.ReadOnly = true;
             txtLoadID.ReadOnly = true;
-
             txtJobID.Text = _jobId.ToString();
             txtLoadID.Text = _loadId.ToString();
 
             LoadComboBoxes();
+
+            LoadTransportUnitsGrid();
         }
 
         private void LoadComboBoxes()
@@ -80,7 +85,20 @@ namespace e___Shift_System.Forms
 
         private void dataGridViewTransportUnitManagement_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataGridViewTransportUnitManagement.Rows[e.RowIndex];
 
+                // Example assignments (ensure your property/column names match!)
+                txtTransportUnitID.Text = row.Cells["TransportUnitID"].Value?.ToString();
+                cmbLorry.SelectedValue = row.Cells["LorryID"].Value;
+                cmbDriver.SelectedValue = row.Cells["DriverID"].Value;
+                cmbAssistant.SelectedValue = row.Cells["AssistantID"].Value is DBNull ? null : row.Cells["AssistantID"].Value;
+                cmbContainer.SelectedValue = row.Cells["ContainerID"].Value;
+
+                // If you have a status textbox/label:
+                // txtStatus.Text = row.Cells["Status"].Value?.ToString();
+            }
         }
 
         private void btnAssign_Click(object sender, EventArgs e)
@@ -102,13 +120,14 @@ namespace e___Shift_System.Forms
                 return;
             }
 
-            // Prepare the transport unit
+            // Prepare the transport unit from selected inputs
             var unit = new TransportUnit
             {
                 LorryID = Convert.ToInt32(cmbLorry.SelectedValue),
                 DriverID = Convert.ToInt32(cmbDriver.SelectedValue),
                 AssistantID = cmbAssistant.SelectedIndex >= 0 && cmbAssistant.SelectedValue != null
-                                ? (int?)cmbAssistant.SelectedValue : null,
+                                ? (int?)cmbAssistant.SelectedValue
+                                : null,
                 ContainerID = Convert.ToInt32(cmbContainer.SelectedValue),
                 Status = "Assigned"
             };
@@ -119,7 +138,18 @@ namespace e___Shift_System.Forms
 
             if (unitId > 0 && string.IsNullOrEmpty(errorMsg))
             {
-                // After creation, link the unit to the load and update status
+                // Update the Transport Unit record status to "Assigned"
+                var assignedUnit = _service.GetTransportUnitById(unitId);
+                if (assignedUnit != null)
+                {
+                    assignedUnit.Status = "Assigned";
+                    _service.EditTransportUnit(assignedUnit, out string updateMsg);
+                }
+
+                // Show assigned Transport Unit ID in the textbox on this form
+                txtTransportUnitID.Text = unitId.ToString();
+
+                // Update associated Load's AssignedTransportUnitID and Status to "Assigned"
                 ILoadRepository loadRepo = new LoadRepository();
                 if (int.TryParse(txtLoadID.Text, out int loadId))
                 {
@@ -133,7 +163,9 @@ namespace e___Shift_System.Forms
                 }
 
                 MessageBox.Show("Transport unit assigned and load status updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close(); // Close and let Load Management refresh if needed
+
+                // Optionally: Close the form or refresh controls as needed
+                this.Close();
             }
             else
             {
@@ -177,7 +209,7 @@ namespace e___Shift_System.Forms
             cmbDriver.SelectedIndex = -1;
             cmbAssistant.SelectedIndex = -1;
             cmbContainer.SelectedIndex = -1;
-            txtTransportUnitID.Text =   _service.GetAllTransportUnits().Count > 0 ? 
+            txtTransportUnitID.Text = _service.GetAllTransportUnits().Count > 0 ?
                 (_service.GetAllTransportUnits().Max(u => u.TransportUnitID) + 1).ToString() : "1";
 
         }
@@ -194,6 +226,123 @@ namespace e___Shift_System.Forms
             else
             {
                 MessageBox.Show(errorMsg, "Delete Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            var loadManagementForm = new Load_Management(_jobId); // _jobId is your field holding the Job ID
+            loadManagementForm.StartPosition = FormStartPosition.CenterScreen;
+            loadManagementForm.Show();
+
+            // Close the current Transport Unit Management form
+            this.Close();
+        }
+
+        private void cmbLorry_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Clear()
+        {
+
+            txtTransportUnitID.Clear();
+
+            // Reset all ComboBoxes to unselected
+            cmbLorry.SelectedIndex = -1;
+            cmbDriver.SelectedIndex = -1;
+            cmbAssistant.SelectedIndex = -1;
+            cmbContainer.SelectedIndex = -1;
+
+            // Optionally clear any extra text fields or reset labels as required
+            // Example: txtSomeOtherField.Clear();
+
+            // If you want to ensure dropdown lists are up-to-date (in case availability changed):
+            LoadComboBoxes();
+        }
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            Clear();
+
+        }
+
+        private void dataGridViewTransportUnitManagement_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnGenReport_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "PDF (*.pdf)|*.pdf", FileName = "TransportUnitsReport.pdf" })
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        var dgv = dataGridViewTransportUnitManagement; // Use your actual DataGridView name
+
+                        PdfPTable pdfTable = new PdfPTable(dgv.Columns.Count)
+                        {
+                            WidthPercentage = 100,
+                            DefaultCell = { Padding = 3, BorderWidth = 1 }
+                        };
+
+                        // Headers
+                        foreach (DataGridViewColumn column in dgv.Columns)
+                        {
+                            PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText))
+                            {
+                                BackgroundColor = new BaseColor(230, 230, 230)
+                            };
+                            pdfTable.AddCell(cell);
+                        }
+
+                        // Data rows
+                        foreach (DataGridViewRow row in dgv.Rows)
+                        {
+                            if (!row.IsNewRow)
+                            {
+                                foreach (DataGridViewCell cell in row.Cells)
+                                {
+                                    pdfTable.AddCell(cell.Value?.ToString() ?? "");
+                                }
+                            }
+                        }
+
+                        using (FileStream stream = new FileStream(sfd.FileName, FileMode.Create))
+                        {
+                            Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 20f, 10f);
+                            PdfWriter.GetInstance(pdfDoc, stream);
+                            pdfDoc.Open();
+
+                            // Title (bold, centered)
+                            var fontTitle = FontFactory.GetFont("Arial", 16, iTextSharp.text.Font.BOLD);
+                            Paragraph title = new Paragraph("Transport Unit Management Report", fontTitle)
+                            {
+                                Alignment = Element.ALIGN_CENTER,
+                                SpacingAfter = 10f
+                            };
+                            pdfDoc.Add(title);
+
+                            // Date
+                            Paragraph date = new Paragraph($"Report generated on {DateTime.Now:yyyy-MM-dd}")
+                            {
+                                Alignment = Element.ALIGN_CENTER,
+                                SpacingAfter = 10f
+                            };
+                            pdfDoc.Add(date);
+
+                            pdfDoc.Add(pdfTable);
+                            pdfDoc.Close();
+                        }
+                        MessageBox.Show("PDF report created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error generating PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
     }

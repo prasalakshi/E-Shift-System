@@ -42,8 +42,6 @@
             pictureBox3 = new PictureBox();
             btnDelete = new Button();
             btnAdd = new Button();
-            cmbFilterbyCusID = new ComboBox();
-            label1 = new Label();
             dataGridViewLoadManagement = new DataGridView();
             label9 = new Label();
             txtStatus = new TextBox();
@@ -73,13 +71,14 @@
             // btnGenReport
             // 
             btnGenReport.BackColor = SystemColors.ActiveCaption;
-            btnGenReport.Location = new Point(1198, 741);
+            btnGenReport.Location = new Point(1198, 706);
             btnGenReport.Margin = new Padding(4, 3, 4, 3);
             btnGenReport.Name = "btnGenReport";
             btnGenReport.Size = new Size(188, 44);
             btnGenReport.TabIndex = 146;
             btnGenReport.Text = "Generate Report";
             btnGenReport.UseVisualStyleBackColor = false;
+            btnGenReport.Click += btnGenReport_Click;
             // 
             // label8
             // 
@@ -197,29 +196,10 @@
             btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
             // 
-            // cmbFilterbyCusID
-            // 
-            cmbFilterbyCusID.FormattingEnabled = true;
-            cmbFilterbyCusID.Location = new Point(706, 137);
-            cmbFilterbyCusID.Margin = new Padding(4, 3, 4, 3);
-            cmbFilterbyCusID.Name = "cmbFilterbyCusID";
-            cmbFilterbyCusID.Size = new Size(188, 30);
-            cmbFilterbyCusID.TabIndex = 129;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(504, 140);
-            label1.Margin = new Padding(4, 0, 4, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(179, 22);
-            label1.TabIndex = 128;
-            label1.Text = "Filter by Customer ID";
-            // 
             // dataGridViewLoadManagement
             // 
             dataGridViewLoadManagement.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewLoadManagement.Location = new Point(504, 187);
+            dataGridViewLoadManagement.Location = new Point(504, 132);
             dataGridViewLoadManagement.Margin = new Padding(4, 3, 4, 3);
             dataGridViewLoadManagement.Name = "dataGridViewLoadManagement";
             dataGridViewLoadManagement.RowHeadersWidth = 51;
@@ -345,8 +325,6 @@
             Controls.Add(pictureBox3);
             Controls.Add(btnDelete);
             Controls.Add(btnAdd);
-            Controls.Add(cmbFilterbyCusID);
-            Controls.Add(label1);
             Controls.Add(dataGridViewLoadManagement);
             Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Margin = new Padding(4, 3, 4, 3);

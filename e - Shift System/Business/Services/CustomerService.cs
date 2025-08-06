@@ -7,6 +7,8 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
+using System.Net.Mail;
 
 namespace e___Shift_System.Business.Services
 {
@@ -25,6 +27,13 @@ namespace e___Shift_System.Business.Services
             return _repo.GetCustomerByUsernameAndPassword(username, passwordHash);
         }
 
+        /// <summary>Registers the customer.</summary>
+        /// <param name="customer">The customer.</param>
+        /// <param name="confirmPassword">The confirm password.</param>
+        /// <param name="errorMessage">The error message.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
         public bool RegisterCustomer(Customer customer, string confirmPassword, out string errorMessage)
         {
             errorMessage = "";
@@ -63,6 +72,11 @@ namespace e___Shift_System.Business.Services
             return true;
         }
 
+        /// <summary>Computes the sha256 hash.</summary>
+        /// <param name="rawData">The raw data.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
         private static string ComputeSha256Hash(string rawData)
         {
             using (SHA256 sha256Hash = SHA256.Create())
@@ -82,6 +96,10 @@ namespace e___Shift_System.Business.Services
 
         public void UpdateCustomerProfile(Customer customer, out string errorMessage)
         {
+            errorMessage = "";
+            if (!ValidateCustomerProfile(customer.Email, customer.ContactNumber, out errorMessage))
+                return; // Abandon on failed validation
+
             errorMessage = "";
             if (string.IsNullOrWhiteSpace(customer.Email) || string.IsNullOrWhiteSpace(customer.ContactNumber))
             {
@@ -128,5 +146,55 @@ namespace e___Shift_System.Business.Services
             }
             _repo.UpdateCustomerContact(CustomerId, email, contact);
         }
+
+        public bool ValidateCustomerProfile(string contact, string email, out string errorMessage)
+        {
+            if (!ValidateContactNumber(contact))
+            {
+                errorMessage = "Contact Number must contain only numbers.";
+                return false;
+            }
+
+            try
+            {
+                var mail = new MailAddress(email);
+            }
+            catch
+            {
+                errorMessage = "Invalid email format.";
+                return false;
+            }
+
+            errorMessage = string.Empty;
+            return true;
+        }
+
+        public bool ValidateContactNumber(string contact)
+        {
+            // Remove leading/trailing spaces
+            contact = contact.Trim();
+
+            // Only check: not empty and all digits
+            if (string.IsNullOrWhiteSpace(contact) || !contact.All(char.IsDigit))
+                return false;
+            return true;
+
+        }
+
+        public bool ValidateEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+            try
+            {
+                var addr = new MailAddress(email);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
-}
+    }
+

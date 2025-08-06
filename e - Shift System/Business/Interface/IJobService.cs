@@ -18,6 +18,7 @@ namespace e___Shift_System.Business.Interface
         void RegisterJob(Job job, out string errorMessage);
         void EditJob(Job job, out string errorMessage);
         List<Job> GetJobsByDate(DateTime jobDate);
+        bool ConfirmJob(int jobId, out string errorMessage);
 
 
 

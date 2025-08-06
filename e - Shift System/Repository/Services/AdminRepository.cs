@@ -14,6 +14,12 @@ namespace e___Shift_System.Repository.Services
         private readonly string connectionString = "Server=DESKTOP-PCPS2U4;Database=EShiftDB;Integrated Security=SSPI;Trusted_Connection=True;TrustServerCertificate=True;";
 
 
+        /// <summary>Determines whether [is username or email exists] [the specified username].</summary>
+        /// <param name="username">The username.</param>
+        /// <param name="email">The email.</param>
+        /// <returns>
+        ///   <c>true</c> if [is username or email exists] [the specified username]; otherwise, <c>false</c>.</returns>
+        /// <exception cref="System.Exception">An error occurred while checking for existing admin.</exception>
         public bool IsUsernameOrEmailExists(string username, string email)
         {
             try
@@ -79,13 +85,20 @@ namespace e___Shift_System.Repository.Services
         }
         
 
+        /// <summary>Gets the admin by username and password.</summary>
+        /// <param name="username">The username.</param>
+        /// <param name="passwordHash">The password hash.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <exception cref="System.Exception">An error occurred while retrieving admin data.</exception>
         public Admin GetAdminByUsernameAndPassword(string username, string passwordHash)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    string query = "SELECT AdminID, Username FROM Admin WHERE Username = @username AND PasswordHash = @passwordHash  AND Status = 'Active';";
+                    string query = "SELECT AdminID, Username FROM Admin WHERE Username = @username AND PasswordHash = @passwordHash AND Status = 'Active';";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@passwordHash", passwordHash);
@@ -153,6 +166,8 @@ namespace e___Shift_System.Repository.Services
             }   
         }
 
+        /// <summary>Deletes the admin.</summary>
+        /// <param name="adminId">The admin identifier.</param>
         public void DeleteAdmin(int adminId)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))

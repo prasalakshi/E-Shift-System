@@ -49,27 +49,26 @@ namespace e___Shift_System.Forms
             string email = txtEmail.Text.Trim();
             string contact = txtConNo.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(contact))
+            if (!_customerService.ValidateCustomerProfile(email, contact, out string validationError))
             {
-                MessageBox.Show("Email and Contact Number must not be blank.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(validationError, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             _customer.Email = email;
             _customer.ContactNumber = contact;
 
-            _customerService.UpdateCustomerProfile(_customer, out string errorMessage);
+            _customerService.UpdateCustomerProfile(_customer, out string updateError);
 
-            if (string.IsNullOrEmpty(errorMessage))
+            if (string.IsNullOrEmpty(updateError))
             {
                 MessageBox.Show("Profile updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadProfile();
             }
             else
             {
-                MessageBox.Show(errorMessage, "Update Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(updateError, "Update Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            LoadProfile();
 
         }
 

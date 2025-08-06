@@ -50,6 +50,7 @@
             label7 = new Label();
             txtLoadID = new TextBox();
             pictureBox3 = new PictureBox();
+            btnGenReport = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewTransportUnitManagement).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
@@ -93,6 +94,7 @@
             btnBack.TabIndex = 204;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = false;
+            btnBack.Click += btnBack_Click;
             // 
             // btnDelete
             // 
@@ -128,6 +130,7 @@
             btnClear.TabIndex = 201;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = false;
+            btnClear.Click += btnClear_Click;
             // 
             // btnAssign
             // 
@@ -208,6 +211,7 @@
             cmbLorry.Name = "cmbLorry";
             cmbLorry.Size = new Size(288, 30);
             cmbLorry.TabIndex = 192;
+            cmbLorry.SelectedIndexChanged += cmbLorry_SelectedIndexChanged;
             // 
             // dataGridViewTransportUnitManagement
             // 
@@ -215,8 +219,9 @@
             dataGridViewTransportUnitManagement.Location = new Point(524, 182);
             dataGridViewTransportUnitManagement.Name = "dataGridViewTransportUnitManagement";
             dataGridViewTransportUnitManagement.RowHeadersWidth = 51;
-            dataGridViewTransportUnitManagement.Size = new Size(859, 629);
+            dataGridViewTransportUnitManagement.Size = new Size(859, 526);
             dataGridViewTransportUnitManagement.TabIndex = 191;
+            dataGridViewTransportUnitManagement.CellClick += dataGridViewTransportUnitManagement_CellContentClick;
             dataGridViewTransportUnitManagement.CellContentClick += dataGridViewTransportUnitManagement_CellContentClick;
             // 
             // label8
@@ -266,12 +271,25 @@
             pictureBox3.TabIndex = 186;
             pictureBox3.TabStop = false;
             // 
+            // btnGenReport
+            // 
+            btnGenReport.BackColor = SystemColors.ActiveCaption;
+            btnGenReport.Location = new Point(1195, 758);
+            btnGenReport.Margin = new Padding(4, 3, 4, 3);
+            btnGenReport.Name = "btnGenReport";
+            btnGenReport.Size = new Size(188, 44);
+            btnGenReport.TabIndex = 208;
+            btnGenReport.Text = "Generate Report";
+            btnGenReport.UseVisualStyleBackColor = false;
+            btnGenReport.Click += btnGenReport_Click;
+            // 
             // Transport_Unit_Management
             // 
             AutoScaleDimensions = new SizeF(10F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1422, 853);
             ControlBox = false;
+            Controls.Add(btnGenReport);
             Controls.Add(label6);
             Controls.Add(txtTransportUnitID);
             Controls.Add(label5);
@@ -299,6 +317,7 @@
             Name = "Transport_Unit_Management";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Transport_Unit_Management";
+            Load += Transport_Unit_Management_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridViewTransportUnitManagement).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
@@ -329,5 +348,6 @@
         private Label label7;
         private TextBox txtLoadID;
         private PictureBox pictureBox3;
+        private Button btnGenReport;
     }
 }

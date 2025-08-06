@@ -11,6 +11,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace e___Shift_System.Forms
 {
@@ -103,7 +106,7 @@ namespace e___Shift_System.Forms
             if (string.IsNullOrEmpty(errorMessage))
             {
                 MessageBox.Show("Customer updated successfully.", "Success");
-                LoadCustomers(); 
+                LoadCustomers();
             }
             else
             {
@@ -111,6 +114,83 @@ namespace e___Shift_System.Forms
             }
         }
 
-        
+        private void btnGenReport_Click(object sender, EventArgs e)
+        {
+            // Prompt user to choose save location
+            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "PDF (*.pdf)|*.pdf", FileName = "CustomerReport.pdf" })
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        // Create PDF table with number of columns same as your DataGridView
+                        PdfPTable pdfTable = new PdfPTable(dataGridViewCustomerManagement.Columns.Count)
+                        {
+                            WidthPercentage = 100,
+                            DefaultCell = { Padding = 3, BorderWidth = 1 }
+                        };
+
+                        // Add headers
+                        foreach (DataGridViewColumn column in dataGridViewCustomerManagement.Columns)
+                        {
+                            PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText))
+                            {
+                                BackgroundColor = new BaseColor(230, 230, 230)
+                            };
+                            pdfTable.AddCell(cell);
+                        }
+
+                        // Add all rows from DataGridView to PDF
+                        foreach (DataGridViewRow row in dataGridViewCustomerManagement.Rows)
+                        {
+                            if (!row.IsNewRow)
+                            {
+                                foreach (DataGridViewCell cell in row.Cells)
+                                {
+                                    pdfTable.AddCell(cell.Value?.ToString() ?? string.Empty);
+                                }
+                            }
+                        }
+
+                        // Generate PDF document
+                        using (FileStream stream = new FileStream(sfd.FileName, FileMode.Create))
+                        {
+                            Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 20f, 10f);
+                            PdfWriter.GetInstance(pdfDoc, stream);
+                            pdfDoc.Open();
+
+                            // Add title
+                            var titleFont = FontFactory.GetFont("Arial", 16);
+                            Paragraph title = new Paragraph("Customer Management Report", titleFont)
+                            {
+                                Alignment = Element.ALIGN_CENTER,
+                                SpacingAfter = 10f
+                            };
+                            pdfDoc.Add(title);
+
+                            // Add date
+                            Paragraph date = new Paragraph($"Report generated on {DateTime.Now:yyyy-MM-dd}")
+                            {
+                                Alignment = Element.ALIGN_CENTER,
+                                SpacingAfter = 10f
+                            };
+                            pdfDoc.Add(date);
+
+                            // Add table
+                            pdfDoc.Add(pdfTable);
+
+                            pdfDoc.Close();
+                        }
+
+                        MessageBox.Show("PDF report generated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error generating PDF report: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+
+        }
     }
 }

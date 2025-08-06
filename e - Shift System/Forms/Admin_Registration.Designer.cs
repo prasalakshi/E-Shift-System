@@ -46,6 +46,7 @@
             txtUN = new TextBox();
             label1 = new Label();
             pictureBox1 = new PictureBox();
+            btnBack = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -230,12 +231,25 @@
             pictureBox1.TabIndex = 51;
             pictureBox1.TabStop = false;
             // 
+            // btnBack
+            // 
+            btnBack.BackColor = SystemColors.ActiveCaption;
+            btnBack.Location = new Point(47, 765);
+            btnBack.Margin = new Padding(5, 3, 5, 3);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(182, 48);
+            btnBack.TabIndex = 52;
+            btnBack.Text = "Back";
+            btnBack.UseVisualStyleBackColor = false;
+            btnBack.Click += btnBack_Click;
+            // 
             // Admin_Registration
             // 
             AutoScaleDimensions = new SizeF(10F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1422, 853);
             ControlBox = false;
+            Controls.Add(btnBack);
             Controls.Add(pictureBox1);
             Controls.Add(linkLableExit);
             Controls.Add(btnClear);
@@ -286,5 +300,6 @@
         private TextBox txtUN;
         private Label label1;
         private PictureBox pictureBox1;
+        private Button btnBack;
     }
 }

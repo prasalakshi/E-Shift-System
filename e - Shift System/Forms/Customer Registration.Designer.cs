@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Customer_Registration));
             pictureBox1 = new PictureBox();
             label3 = new Label();
             txtPW = new TextBox();
@@ -40,9 +39,6 @@
             txtName = new TextBox();
             label5 = new Label();
             txtEmail = new TextBox();
-            label7 = new Label();
-            button2 = new Button();
-            button3 = new Button();
             pictureBox2 = new PictureBox();
             linkLabelLogin = new LinkLabel();
             label8 = new Label();
@@ -99,7 +95,7 @@
             // btnSignUp
             // 
             btnSignUp.BackColor = SystemColors.ActiveCaption;
-            btnSignUp.Location = new Point(440, 554);
+            btnSignUp.Location = new Point(440, 571);
             btnSignUp.Margin = new Padding(4, 3, 4, 3);
             btnSignUp.Name = "btnSignUp";
             btnSignUp.Size = new Size(188, 44);
@@ -163,44 +159,6 @@
             txtEmail.Size = new Size(507, 29);
             txtEmail.TabIndex = 2;
             // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(699, 656);
-            label7.Margin = new Padding(4, 0, 4, 0);
-            label7.Name = "label7";
-            label7.Size = new Size(34, 22);
-            label7.TabIndex = 23;
-            label7.Text = "OR";
-            // 
-            // button2
-            // 
-            button2.BackColor = Color.Transparent;
-            button2.BackgroundImageLayout = ImageLayout.None;
-            button2.Image = (Image)resources.GetObject("button2.Image");
-            button2.ImageAlign = ContentAlignment.MiddleLeft;
-            button2.Location = new Point(567, 700);
-            button2.Margin = new Padding(4, 3, 4, 3);
-            button2.Name = "button2";
-            button2.Size = new Size(312, 44);
-            button2.TabIndex = 10;
-            button2.Text = "Continue with google";
-            button2.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            button3.BackColor = Color.Transparent;
-            button3.Image = Properties.Resources.facebook;
-            button3.ImageAlign = ContentAlignment.MiddleLeft;
-            button3.Location = new Point(567, 770);
-            button3.Margin = new Padding(4, 3, 4, 3);
-            button3.Name = "button3";
-            button3.Size = new Size(312, 44);
-            button3.TabIndex = 11;
-            button3.Text = "Continue with facebook";
-            button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
-            // 
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.logo1;
@@ -214,7 +172,7 @@
             // linkLabelLogin
             // 
             linkLabelLogin.AutoSize = true;
-            linkLabelLogin.Location = new Point(797, 623);
+            linkLabelLogin.Location = new Point(797, 680);
             linkLabelLogin.Name = "linkLabelLogin";
             linkLabelLogin.Size = new Size(53, 22);
             linkLabelLogin.TabIndex = 9;
@@ -225,7 +183,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(571, 623);
+            label8.Location = new Point(571, 680);
             label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
             label8.Size = new Size(212, 22);
@@ -273,7 +231,7 @@
             // btnClear
             // 
             btnClear.BackColor = SystemColors.ActiveCaption;
-            btnClear.Location = new Point(771, 554);
+            btnClear.Location = new Point(771, 571);
             btnClear.Margin = new Padding(4, 3, 4, 3);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(188, 44);
@@ -311,9 +269,6 @@
             Controls.Add(label8);
             Controls.Add(linkLabelLogin);
             Controls.Add(pictureBox2);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(label7);
             Controls.Add(label5);
             Controls.Add(txtEmail);
             Controls.Add(label4);
@@ -350,9 +305,6 @@
         private TextBox txtName;
         private Label label5;
         private TextBox txtEmail;
-        private Label label7;
-        private Button button2;
-        private Button button3;
         private PictureBox pictureBox2;
         private LinkLabel linkLabelLogin;
         private Label label8;

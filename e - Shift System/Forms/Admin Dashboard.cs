@@ -64,7 +64,9 @@ namespace e___Shift_System.Forms
 
         private void btnMyJobs_Click(object sender, EventArgs e)
         {
-
+            Form UserManagement = new User_Management();
+            UserManagement.Show();
+            this.Hide();
         }
 
         private void linkLabelLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -80,7 +82,9 @@ namespace e___Shift_System.Forms
 
         private void btnMyLoads_Click(object sender, EventArgs e)
         {
-
+            Form customerManagement = new Customer_Management();
+            customerManagement.Show();
+            this.Hide();
         }
 
         private void btnProfile_Click(object sender, EventArgs e)
@@ -123,6 +127,11 @@ namespace e___Shift_System.Forms
             Form AddContainers = new Add_containers();
             AddContainers.Show();
             this.Hide();
+        }
+
+        private void btnLoadManagement_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }

@@ -45,6 +45,7 @@
             btnBack = new Button();
             label5 = new Label();
             txtShiftItems = new TextBox();
+            btnClear = new Button();
             ((System.ComponentModel.ISupportInitialize)jobsDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -103,7 +104,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(41, 302);
+            label3.Location = new Point(41, 293);
             label3.Name = "label3";
             label3.Size = new Size(119, 22);
             label3.TabIndex = 31;
@@ -111,7 +112,7 @@
             // 
             // txtStartLocation
             // 
-            txtStartLocation.Location = new Point(203, 299);
+            txtStartLocation.Location = new Point(203, 290);
             txtStartLocation.Margin = new Padding(4, 3, 4, 3);
             txtStartLocation.Name = "txtStartLocation";
             txtStartLocation.Size = new Size(290, 29);
@@ -120,7 +121,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(41, 370);
+            label4.Location = new Point(41, 352);
             label4.Name = "label4";
             label4.Size = new Size(98, 22);
             label4.TabIndex = 33;
@@ -128,7 +129,7 @@
             // 
             // txtDestination
             // 
-            txtDestination.Location = new Point(203, 367);
+            txtDestination.Location = new Point(203, 349);
             txtDestination.Margin = new Padding(4, 3, 4, 3);
             txtDestination.Name = "txtDestination";
             txtDestination.Size = new Size(290, 29);
@@ -137,7 +138,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(41, 439);
+            label6.Location = new Point(41, 408);
             label6.Name = "label6";
             label6.Size = new Size(80, 22);
             label6.TabIndex = 37;
@@ -145,7 +146,7 @@
             // 
             // dtpJobDate
             // 
-            dtpJobDate.Location = new Point(203, 439);
+            dtpJobDate.Location = new Point(203, 408);
             dtpJobDate.Name = "dtpJobDate";
             dtpJobDate.Size = new Size(290, 29);
             dtpJobDate.TabIndex = 38;
@@ -153,7 +154,7 @@
             // btnAdd
             // 
             btnAdd.BackColor = SystemColors.ActiveCaption;
-            btnAdd.Location = new Point(41, 695);
+            btnAdd.Location = new Point(41, 640);
             btnAdd.Margin = new Padding(4, 3, 4, 3);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(188, 44);
@@ -165,7 +166,7 @@
             // btnEdit
             // 
             btnEdit.BackColor = SystemColors.ActiveCaption;
-            btnEdit.Location = new Point(305, 695);
+            btnEdit.Location = new Point(305, 640);
             btnEdit.Margin = new Padding(4, 3, 4, 3);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(188, 44);
@@ -177,7 +178,7 @@
             // btnCancel
             // 
             btnCancel.BackColor = SystemColors.ActiveCaption;
-            btnCancel.Location = new Point(41, 785);
+            btnCancel.Location = new Point(41, 714);
             btnCancel.Margin = new Padding(4, 3, 4, 3);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(188, 44);
@@ -189,7 +190,7 @@
             // btnBack
             // 
             btnBack.BackColor = SystemColors.ActiveCaption;
-            btnBack.Location = new Point(305, 785);
+            btnBack.Location = new Point(43, 797);
             btnBack.Margin = new Padding(4, 3, 4, 3);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(188, 44);
@@ -201,7 +202,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(41, 505);
+            label5.Location = new Point(41, 470);
             label5.Name = "label5";
             label5.Size = new Size(121, 22);
             label5.TabIndex = 44;
@@ -209,12 +210,24 @@
             // 
             // txtShiftItems
             // 
-            txtShiftItems.Location = new Point(203, 502);
+            txtShiftItems.Location = new Point(203, 467);
             txtShiftItems.Margin = new Padding(4, 3, 4, 3);
             txtShiftItems.Multiline = true;
             txtShiftItems.Name = "txtShiftItems";
             txtShiftItems.Size = new Size(290, 142);
             txtShiftItems.TabIndex = 43;
+            // 
+            // btnClear
+            // 
+            btnClear.BackColor = SystemColors.ActiveCaption;
+            btnClear.Location = new Point(305, 714);
+            btnClear.Margin = new Padding(4, 3, 4, 3);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(188, 44);
+            btnClear.TabIndex = 45;
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = false;
+            btnClear.Click += btnClear_Click;
             // 
             // My_Jobs
             // 
@@ -222,6 +235,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1422, 853);
             ControlBox = false;
+            Controls.Add(btnClear);
             Controls.Add(label5);
             Controls.Add(txtShiftItems);
             Controls.Add(btnBack);
@@ -270,5 +284,6 @@
         private Button btnBack;
         private Label label5;
         private TextBox txtShiftItems;
+        private Button btnClear;
     }
 }

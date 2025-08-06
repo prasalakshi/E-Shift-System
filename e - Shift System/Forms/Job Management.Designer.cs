@@ -56,6 +56,10 @@
             btnClearFilter = new Button();
             dtpFilterJobDate = new DateTimePicker();
             btnConfirm = new Button();
+            comboBox1 = new ComboBox();
+            label11 = new Label();
+            label12 = new Label();
+            btnClear = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewJobManagement).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
@@ -63,7 +67,7 @@
             // dataGridViewJobManagement
             // 
             dataGridViewJobManagement.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewJobManagement.Location = new Point(487, 207);
+            dataGridViewJobManagement.Location = new Point(488, 272);
             dataGridViewJobManagement.Margin = new Padding(4, 3, 4, 3);
             dataGridViewJobManagement.Name = "dataGridViewJobManagement";
             dataGridViewJobManagement.RowHeadersWidth = 51;
@@ -75,17 +79,17 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(488, 155);
+            label1.Location = new Point(488, 179);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(179, 22);
+            label1.Size = new Size(79, 22);
             label1.TabIndex = 1;
-            label1.Text = "Filter by Customer ID";
+            label1.Text = "Filter by:";
             // 
             // cmbFilterbyCusID
             // 
             cmbFilterbyCusID.FormattingEnabled = true;
-            cmbFilterbyCusID.Location = new Point(675, 151);
+            cmbFilterbyCusID.Location = new Point(686, 176);
             cmbFilterbyCusID.Margin = new Padding(4, 3, 4, 3);
             cmbFilterbyCusID.Name = "cmbFilterbyCusID";
             cmbFilterbyCusID.Size = new Size(91, 30);
@@ -246,7 +250,7 @@
             // btnGenReport
             // 
             btnGenReport.BackColor = SystemColors.ActiveCaption;
-            btnGenReport.Location = new Point(1197, 753);
+            btnGenReport.Location = new Point(1197, 775);
             btnGenReport.Margin = new Padding(4, 3, 4, 3);
             btnGenReport.Name = "btnGenReport";
             btnGenReport.Size = new Size(188, 44);
@@ -300,17 +304,17 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(811, 154);
+            label10.Location = new Point(809, 179);
             label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
-            label10.Size = new Size(149, 22);
+            label10.Size = new Size(80, 22);
             label10.TabIndex = 130;
-            label10.Text = "Filter by Job Date";
+            label10.Text = "Job Date";
             // 
             // btnClearFilter
             // 
             btnClearFilter.BackColor = SystemColors.ActiveCaption;
-            btnClearFilter.Location = new Point(1276, 144);
+            btnClearFilter.Location = new Point(1276, 218);
             btnClearFilter.Margin = new Padding(4, 3, 4, 3);
             btnClearFilter.Name = "btnClearFilter";
             btnClearFilter.Size = new Size(109, 44);
@@ -321,7 +325,7 @@
             // 
             // dtpFilterJobDate
             // 
-            dtpFilterJobDate.Location = new Point(967, 150);
+            dtpFilterJobDate.Location = new Point(887, 174);
             dtpFilterJobDate.Name = "dtpFilterJobDate";
             dtpFilterJobDate.Size = new Size(250, 29);
             dtpFilterJobDate.TabIndex = 133;
@@ -337,6 +341,50 @@
             btnConfirm.TabIndex = 134;
             btnConfirm.Text = "Confirm";
             btnConfirm.UseVisualStyleBackColor = false;
+            btnConfirm.Click += btnConfirm_Click;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(1230, 176);
+            comboBox1.Margin = new Padding(4, 3, 4, 3);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(155, 30);
+            comboBox1.TabIndex = 136;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(568, 179);
+            label11.Margin = new Padding(4, 0, 4, 0);
+            label11.Name = "label11";
+            label11.Size = new Size(110, 22);
+            label11.TabIndex = 135;
+            label11.Text = "Customer ID";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(1164, 179);
+            label12.Margin = new Padding(4, 0, 4, 0);
+            label12.Name = "label12";
+            label12.Size = new Size(59, 22);
+            label12.TabIndex = 137;
+            label12.Text = "Status";
+            label12.Click += label12_Click;
+            // 
+            // btnClear
+            // 
+            btnClear.BackColor = SystemColors.ActiveCaption;
+            btnClear.Location = new Point(263, 797);
+            btnClear.Margin = new Padding(4, 3, 4, 3);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(188, 44);
+            btnClear.TabIndex = 138;
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = false;
+            btnClear.Click += btnClear_Click;
             // 
             // Job_Management
             // 
@@ -344,6 +392,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1422, 853);
             ControlBox = false;
+            Controls.Add(btnClear);
+            Controls.Add(label12);
+            Controls.Add(comboBox1);
+            Controls.Add(label11);
             Controls.Add(btnConfirm);
             Controls.Add(dtpFilterJobDate);
             Controls.Add(btnClearFilter);
@@ -414,5 +466,9 @@
         private Button btnClearFilter;
         private DateTimePicker dtpFilterJobDate;
         private Button btnConfirm;
+        private ComboBox comboBox1;
+        private Label label11;
+        private Label label12;
+        private Button btnClear;
     }
 }

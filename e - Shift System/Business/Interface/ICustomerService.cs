@@ -21,5 +21,13 @@ namespace e___Shift_System.Business.Interface
         void DeleteCustomer(int CustomerId, out string errorMessage);
 
         void EditCustomer(int CustomerId, string email, string contact, out string errorMessage);
+                
+        public bool ValidateCustomerProfile(string email, string contact, out string errorMessage);
+
+        public bool ValidateContactNumber(string contact);
+
+        public bool ValidateEmail(string email);
+
+
     }
 }

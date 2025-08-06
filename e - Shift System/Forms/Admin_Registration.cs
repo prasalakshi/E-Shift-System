@@ -46,7 +46,7 @@ namespace e___Shift_System.Forms
                 ContactNumber = contactNumber,
                 Username = username,
                 PasswordHash = ComputeSha256Hash(password),
-                Status = "Active" 
+                Status = "Active"
             };
 
             try
@@ -110,6 +110,13 @@ namespace e___Shift_System.Forms
         private void txtConNo_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Form userManagement = new User_Management();
+            userManagement.Show();
+            this.Hide();
         }
     }
 }

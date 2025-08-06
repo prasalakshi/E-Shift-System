@@ -39,6 +39,7 @@
             pictureBox1 = new PictureBox();
             btnBack = new Button();
             linkLableExit = new LinkLabel();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -87,7 +88,7 @@
             // btnLogin
             // 
             btnLogin.BackColor = SystemColors.ActiveCaption;
-            btnLogin.Location = new Point(605, 497);
+            btnLogin.Location = new Point(481, 497);
             btnLogin.Margin = new Padding(4, 3, 4, 3);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(188, 44);
@@ -161,12 +162,25 @@
             linkLableExit.Text = "Exit";
             linkLableExit.LinkClicked += linkLableExit_LinkClicked;
             // 
+            // button1
+            // 
+            button1.BackColor = SystemColors.ActiveCaption;
+            button1.Location = new Point(744, 497);
+            button1.Margin = new Padding(4, 3, 4, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(188, 44);
+            button1.TabIndex = 28;
+            button1.Text = "Back";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
+            // 
             // Admin_Login
             // 
             AutoScaleDimensions = new SizeF(10F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1422, 853);
             ControlBox = false;
+            Controls.Add(button1);
             Controls.Add(linkLableExit);
             Controls.Add(btnBack);
             Controls.Add(pictureBox1);
@@ -202,5 +216,6 @@
         private PictureBox pictureBox1;
         private Button btnBack;
         private LinkLabel linkLableExit;
+        private Button button1;
     }
 }

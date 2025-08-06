@@ -30,8 +30,6 @@
         {
             pictureBox2 = new PictureBox();
             btnMyJobs = new Button();
-            btnMyLoads = new Button();
-            btnTransportInfo = new Button();
             btnProfile = new Button();
             linkLabel1 = new LinkLabel();
             label1 = new Label();
@@ -54,7 +52,7 @@
             // 
             btnMyJobs.BackColor = SystemColors.ActiveCaption;
             btnMyJobs.Font = new Font("Tahoma", 12F);
-            btnMyJobs.Location = new Point(220, 297);
+            btnMyJobs.Location = new Point(229, 330);
             btnMyJobs.Margin = new Padding(4, 3, 4, 3);
             btnMyJobs.Name = "btnMyJobs";
             btnMyJobs.Size = new Size(391, 100);
@@ -63,37 +61,11 @@
             btnMyJobs.UseVisualStyleBackColor = false;
             btnMyJobs.Click += btnMyJobs_Click;
             // 
-            // btnMyLoads
-            // 
-            btnMyLoads.BackColor = SystemColors.ActiveCaption;
-            btnMyLoads.Font = new Font("Tahoma", 12F);
-            btnMyLoads.Location = new Point(220, 479);
-            btnMyLoads.Margin = new Padding(4, 3, 4, 3);
-            btnMyLoads.Name = "btnMyLoads";
-            btnMyLoads.Size = new Size(391, 100);
-            btnMyLoads.TabIndex = 5;
-            btnMyLoads.Text = "My Loads";
-            btnMyLoads.UseVisualStyleBackColor = false;
-            btnMyLoads.Click += btnMyLoads_Click;
-            // 
-            // btnTransportInfo
-            // 
-            btnTransportInfo.BackColor = SystemColors.ActiveCaption;
-            btnTransportInfo.Font = new Font("Tahoma", 12F);
-            btnTransportInfo.Location = new Point(823, 479);
-            btnTransportInfo.Margin = new Padding(4, 3, 4, 3);
-            btnTransportInfo.Name = "btnTransportInfo";
-            btnTransportInfo.Size = new Size(391, 100);
-            btnTransportInfo.TabIndex = 6;
-            btnTransportInfo.Text = "Transport Info";
-            btnTransportInfo.UseVisualStyleBackColor = false;
-            btnTransportInfo.Click += btnTransportInfo_Click;
-            // 
             // btnProfile
             // 
             btnProfile.BackColor = SystemColors.ActiveCaption;
             btnProfile.Font = new Font("Tahoma", 12F);
-            btnProfile.Location = new Point(823, 297);
+            btnProfile.Location = new Point(826, 330);
             btnProfile.Margin = new Padding(4, 3, 4, 3);
             btnProfile.Name = "btnProfile";
             btnProfile.Size = new Size(391, 100);
@@ -148,8 +120,6 @@
             Controls.Add(linkLabel1);
             Controls.Add(pictureBox2);
             Controls.Add(btnProfile);
-            Controls.Add(btnTransportInfo);
-            Controls.Add(btnMyLoads);
             Controls.Add(btnMyJobs);
             Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Margin = new Padding(4, 3, 4, 3);
@@ -165,8 +135,6 @@
         #endregion
         private PictureBox pictureBox2;
         private Button btnMyJobs;
-        private Button btnMyLoads;
-        private Button btnTransportInfo;
         private Button btnProfile;
         private LinkLabel linkLabel1;
         private Label label1;

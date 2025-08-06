@@ -63,7 +63,7 @@
             // dataGridViewUserManagement
             // 
             dataGridViewUserManagement.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewUserManagement.Location = new Point(515, 195);
+            dataGridViewUserManagement.Location = new Point(515, 186);
             dataGridViewUserManagement.Name = "dataGridViewUserManagement";
             dataGridViewUserManagement.RowHeadersWidth = 51;
             dataGridViewUserManagement.Size = new Size(860, 607);

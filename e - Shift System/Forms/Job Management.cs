@@ -12,6 +12,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+
 
 namespace e___Shift_System.Forms
 {
@@ -66,7 +70,74 @@ namespace e___Shift_System.Forms
 
         private void btnGenReport_Click(object sender, EventArgs e)
         {
+            // Prompt for save location
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                Filter = "PDF (*.pdf)|*.pdf",
+                FileName = "JobsReport.pdf"
+            };
 
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    // Create a PDF table with the same number of columns as the DataGridView
+                    PdfPTable pdfTable = new PdfPTable(dataGridViewJobManagement.Columns.Count)
+                    {
+                        WidthPercentage = 100,
+                        DefaultCell = { Padding = 3, BorderWidth = 1 }
+                    };
+
+                    // Add header row
+                    foreach (DataGridViewColumn column in dataGridViewJobManagement.Columns)
+                    {
+                        PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText))
+                        {
+                            BackgroundColor = new BaseColor(230, 230, 230)
+                        };
+                        pdfTable.AddCell(cell);
+                    }
+
+                    // Add all visible rows
+                    foreach (DataGridViewRow row in dataGridViewJobManagement.Rows)
+                    {
+                        if (!row.IsNewRow)
+                        {
+                            foreach (DataGridViewCell cell in row.Cells)
+                            {
+                                pdfTable.AddCell(cell.Value?.ToString() ?? "");
+                            }
+                        }
+                    }
+
+                    // Write to PDF file
+                    using (FileStream stream = new FileStream(sfd.FileName, FileMode.Create))
+                    {
+                        Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 20f, 10f);
+                        PdfWriter.GetInstance(pdfDoc, stream);
+                        pdfDoc.Open();
+
+                        // Title
+                        pdfDoc.Add(new Paragraph("E-Shift - Job Management Report")
+                        {
+                            Alignment = Element.ALIGN_CENTER,
+                            SpacingAfter = 10f,
+                            
+                        });
+                        pdfDoc.Add(new Paragraph("Report Date: " + DateTime.Now.ToString("yyyy-MM-dd")));
+                        pdfDoc.Add(new Paragraph(" ")); // Extra space
+
+                        pdfDoc.Add(pdfTable);
+                        pdfDoc.Close();
+                        stream.Close();
+                    }
+                    MessageBox.Show("PDF report created successfully!", "Success");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error exporting PDF: " + ex.Message, "Export Error");
+                }
+            }
         }
 
         private void dataGridViewJobManagement_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -89,6 +160,9 @@ namespace e___Shift_System.Forms
                 // Optionally enable only for "Pending" jobs
                 string status = row.Cells["Status"].Value?.ToString();
                 btnEdit.Enabled = btnCancel.Enabled = (status == "Pending");
+                btnConfirm.Enabled = (status == "Pending");
+                btnCreateLoads.Enabled = (status == "Pending");
+                btnCreateLoads.Enabled = (status == "Confirmed");
             }
         }
 
@@ -155,12 +229,12 @@ namespace e___Shift_System.Forms
             cmbFilterbyCusID.SelectedIndex = -1;
         }
 
-       
+
 
         private void Job_Management_Load(object sender, EventArgs e)
         {
             LoadCustomerIDs();
-            
+
         }
         private void FilterJobsByCustomer()
         {
@@ -230,6 +304,64 @@ namespace e___Shift_System.Forms
                 // If not checked, show all jobs
                 dataGridViewJobManagement.DataSource = _jobService.GetAllJobs();
             }
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+            if (_selectedJobId == -1)
+            {
+                MessageBox.Show("Please select a 'Pending' job to confirm.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Optional: check if job is currently "Pending"
+            var job = _jobService.GetJobById(_selectedJobId);
+            if (job == null)
+            {
+                MessageBox.Show("Job not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (job.Status != "Pending")
+            {
+                MessageBox.Show("Only jobs in 'Pending' status can be confirmed.", "Invalid Status", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            bool result = _jobService.ConfirmJob(_selectedJobId, out string errorMessage);
+            if (result)
+            {
+                MessageBox.Show("Job confirmed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadJobs();
+            }
+            else
+            {
+                MessageBox.Show(errorMessage, "Confirmation Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Clear()
+        {
+            txtJobID.Clear();
+            txtCusID.Clear();
+            txtStartLocation.Clear();
+            txtDestination.Clear();
+            txtShiftItems.Clear();
+            txtStatus.Clear();
+            dtpJobDate.Value = DateTime.Today;
+        }
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

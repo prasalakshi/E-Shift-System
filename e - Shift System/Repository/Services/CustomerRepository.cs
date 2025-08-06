@@ -13,6 +13,13 @@ namespace e___Shift_System.Repository.Services
     {
         private readonly string connectionString = "Server=DESKTOP-PCPS2U4;Database=EShiftDB;Integrated Security=SSPI;Trusted_Connection=True;TrustServerCertificate=True;";
 
+        /// <summary>Gets the customer by username and password.</summary>
+        /// <param name="username">The username.</param>
+        /// <param name="passwordHash">The password hash.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// <exception cref="System.Exception">An error occurred while retrieving customer data.</exception>
         public Customer GetCustomerByUsernameAndPassword(string username, string passwordHash)
         {
             try
@@ -127,7 +134,7 @@ namespace e___Shift_System.Repository.Services
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error loading profile: " + ex.Message, "Database Error");
+                    MessageBox.Show("An error occurred while loading the customer profile." + ex.Message, "Database Error");
                 }
             }
             return customer;

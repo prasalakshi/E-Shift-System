@@ -45,6 +45,7 @@
             btnBack = new Button();
             btnEdit = new Button();
             linkLabelRegistercustomer = new LinkLabel();
+            btnGenReport = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCustomerManagement).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -150,11 +151,11 @@
             // dataGridViewCustomerManagement
             // 
             dataGridViewCustomerManagement.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCustomerManagement.Location = new Point(512, 185);
+            dataGridViewCustomerManagement.Location = new Point(512, 153);
             dataGridViewCustomerManagement.Margin = new Padding(4, 3, 4, 3);
             dataGridViewCustomerManagement.Name = "dataGridViewCustomerManagement";
             dataGridViewCustomerManagement.RowHeadersWidth = 51;
-            dataGridViewCustomerManagement.Size = new Size(863, 615);
+            dataGridViewCustomerManagement.Size = new Size(863, 609);
             dataGridViewCustomerManagement.TabIndex = 82;
             dataGridViewCustomerManagement.CellClick += dataGridViewCustomerManagement_CellContentClick;
             dataGridViewCustomerManagement.CellContentClick += dataGridViewCustomerManagement_CellContentClick;
@@ -228,12 +229,25 @@
             linkLabelRegistercustomer.Text = "Register Customer";
             linkLabelRegistercustomer.LinkClicked += linkLabelRegistercustomer_LinkClicked;
             // 
+            // btnGenReport
+            // 
+            btnGenReport.BackColor = SystemColors.ActiveCaption;
+            btnGenReport.Location = new Point(1187, 786);
+            btnGenReport.Margin = new Padding(4, 3, 4, 3);
+            btnGenReport.Name = "btnGenReport";
+            btnGenReport.Size = new Size(188, 44);
+            btnGenReport.TabIndex = 126;
+            btnGenReport.Text = "Generate Report";
+            btnGenReport.UseVisualStyleBackColor = false;
+            btnGenReport.Click += btnGenReport_Click;
+            // 
             // Customer_Management
             // 
             AutoScaleDimensions = new SizeF(10F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1422, 853);
             ControlBox = false;
+            Controls.Add(btnGenReport);
             Controls.Add(linkLabelRegistercustomer);
             Controls.Add(btnDel);
             Controls.Add(btnBack);
@@ -283,5 +297,6 @@
         private Button btnBack;
         private Button btnEdit;
         private LinkLabel linkLabelRegistercustomer;
+        private Button btnGenReport;
     }
 }

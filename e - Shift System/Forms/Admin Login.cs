@@ -44,6 +44,9 @@ namespace e___Shift_System.Forms
             Application.Exit();
         }
 
+        /// <summary>Handles the Click event of the btnLogin control.</summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string username = txtAdminUN.Text.Trim();
@@ -76,7 +79,7 @@ namespace e___Shift_System.Forms
             }
         }
 
-       
+
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Form Admin_Registration = new Admin_Registration();
@@ -87,6 +90,13 @@ namespace e___Shift_System.Forms
         private void Admin_Login_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form login = new Login();
+            login.Show();
+            this.Hide();
         }
     }
 }

@@ -45,7 +45,7 @@ namespace e___Shift_System.Forms
                 if (customer != null)
                 {
                     // Check customer status before proceeding
-                    if (customer.Status != "Active")
+                    if (!string.Equals(customer.Status, "Active", StringComparison.OrdinalIgnoreCase))
                     {
                         MessageBox.Show("Account is inactive. Please contact support.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;

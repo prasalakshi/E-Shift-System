@@ -38,7 +38,7 @@ namespace e___Shift_System.Forms
             txtStartLocation.Text = string.Empty;
             txtDestination.Text = string.Empty;
             dtpJobDate.Text = string.Empty;
-
+            txtShiftItems.Text = string.Empty;
         }
 
         private void My_Jobs_Load(object sender, EventArgs e)
@@ -166,6 +166,12 @@ namespace e___Shift_System.Forms
             {
                 MessageBox.Show(errorMessage, "Update Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            Clear();
         }
     }
 }

@@ -70,6 +70,33 @@ namespace e___Shift_System.Business.Services
             }
         }
 
+        public bool ConfirmJob(int jobId, out string errorMessage)
+        {
+            errorMessage = "";
+            var job = _repo.GetJobById(jobId);
+
+            if (job == null)
+            {
+                errorMessage = "Job not found.";
+                return false;
+            }
+            if (job.Status != "Pending")
+            {
+                errorMessage = "Only jobs in 'Pending' status can be confirmed.";
+                return false;
+            }
+            try
+            {
+                _repo.UpdateJobStatus(jobId, "Confirmed"); // or "Accepted" or as per your business wording
+                return true;
+            }
+            catch (Exception ex)
+            {
+                errorMessage = "Error confirming job: " + ex.Message;
+                return false;
+            }
+        }
+
         public void EditJob(Job job, out string errorMessage)
         {
             bool success = UpdateJob(job, out errorMessage);
